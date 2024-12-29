@@ -52,7 +52,7 @@ jobs:
             # Run new container with same port mappings
             sudo docker run -d \
               --name brave_lumiere \
-              -p 80:3000 \
+              -p 3000:3000 \
               -e MYSQL_HOST="${MYSQL_HOST}" \
               -e MYSQL_USER="${MYSQL_USER}" \
               -e MYSQL_PASSWORD="${MYSQL_PASSWORD}" \
