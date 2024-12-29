@@ -60,4 +60,4 @@ jobs:
               todo-app:latest
 
             # Verify deployment
-            sudo docker ps
+            sudo docker ps -a | grep brave_lumiere || echo "Deployment failed"
