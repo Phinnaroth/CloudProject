@@ -42,7 +42,7 @@ jobs:
             
             # Clone latest code
             cd /home/ec2-user
-            rm -rf todo-app
+            sudo rm -rf todo-app
             git clone https://github.com/L-pixela/todo-app.git
             cd todo-app
             
