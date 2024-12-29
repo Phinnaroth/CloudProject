@@ -8,19 +8,19 @@ services:
     volumes:
       - ./:/app
     environment:
-      MYSQL_HOST: ${DB_HOST}
-      MYSQL_USER: ${DB_USER}
-      MYSQL_PASSWORD: ${DB_PASSWORD}
-      MYSQL_DB: ${DB_NAME}
+      MYSQL_HOST: "terraform-20241229095742388900000001.c5cw0e2mcgzs.us-east-1.rds.amazonaws.com"
+      MYSQL_USER: "admin"
+      MYSQL_PASSWORD: "Admin#123"
+      MYSQL_DB: "todo_app_db"
 
   mysql:
     image: mysql:8.0
     volumes:
       - todo-mysql-data:/var/lib/mysql
     environment:
-      MYSQL_DATABASE: ${DB_NAME}
-      MYSQL_USER: ${DB_USER}
-      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: "todo_app_db"
+      MYSQL_USER: "admin"
+      MYSQL_PASSWORD: "Admin#123"
     ports:
       - "3306:3306"
 
