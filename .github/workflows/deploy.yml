@@ -34,8 +34,8 @@ jobs:
           envs: MYSQL_HOST,MYSQL_USER,MYSQL_PASSWORD,MYSQL_DATABASE
           script: |
             # Stop and remove existing container
-            sudo docker stop brave_lumiere || true
-            sudo docker rm brave_lumiere || true
+            sudo docker stop todo-app-app-1 || true
+            sudo docker rm todo-app-app-1 || true
             
             # Remove old image
             sudo docker rmi todo-app:latest || true
@@ -51,7 +51,7 @@ jobs:
             
             # Run new container with same port mappings
             sudo docker run -d \
-              --name brave_lumiere \
+              --name todo-app-app-1 \
               -p 3000:3000 \
               -e MYSQL_HOST="${MYSQL_HOST}" \
               -e MYSQL_USER="${MYSQL_USER}" \
@@ -60,4 +60,4 @@ jobs:
               todo-app:latest
 
             # Verify deployment
-            sudo docker ps -a | grep brave_lumiere || echo "Deployment failed"
+            sudo docker ps -a | grep todo-app-app-1 || echo "Deployment failed"
