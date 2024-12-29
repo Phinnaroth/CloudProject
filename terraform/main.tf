@@ -1,12 +1,12 @@
 provider "aws" {
-  region = "us-east-1"
+  region = "ap-southeast-2"
 }
 
 
 resource "aws_security_group" "allow_rds_access" {
   name        = "allow_rds_access"
   description = "Allow EC2 to connect to RDS MySQL database"
-  vpc_id      = "vpc-02bb196c472c19ef7"  # Replace with your VPC ID
+  vpc_id      = "vpc-04e822c5124058e81"  # Replace with your VPC ID
 
   ingress {
     from_port   = 3306  # MySQL port
@@ -26,7 +26,7 @@ resource "aws_security_group" "allow_rds_access" {
 resource "aws_security_group" "allow_ssh" {
   name        = "allow_ssh"
   description = "Allow SSH inbound traffic"
-  vpc_id      = "vpc-02bb196c472c19ef7"  # Replace with your VPC ID
+  vpc_id      = "vpc-04e822c5124058e81"  # Replace with your VPC ID
 
   ingress {
     from_port   = 22
@@ -46,7 +46,7 @@ resource "aws_security_group" "allow_ssh" {
 resource "aws_security_group" "allow_ec2_http" {
   name        = "allow_ec2_http"
   description = "Allow EC2 instance HTTP access"
-  vpc_id      = "vpc-02bb196c472c19ef7"  # Replace with your VPC ID
+  vpc_id      = "vpc-04e822c5124058e81"  # Replace with your VPC ID
 
   ingress {
     from_port   = 80
@@ -64,9 +64,9 @@ resource "aws_security_group" "allow_ec2_http" {
 }
 
 resource "aws_instance" "app_instance" {
-  ami           = "ami-01816d07b1128cd2d"  # Replace with your desired AMI ID
+  ami           = "ami-043da1afbc9cbab57"  # Replace with your desired AMI ID
   instance_type = "t2.micro"
-  key_name      = "todoKey"  # Replace with your SSH key name
+  key_name      = "new_keypair"  # Replace with your SSH key name
 
   security_groups = [
     aws_security_group.allow_rds_access.name,
