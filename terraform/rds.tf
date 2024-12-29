@@ -1,6 +1,6 @@
 
 
-resource "aws_db_instance" "todo_db" {
+resource "aws_db_instance" "todo-db" {
   allocated_storage    = 20
   engine               = "mysql"
   engine_version       = "8.0.35"
