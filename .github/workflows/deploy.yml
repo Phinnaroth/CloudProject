@@ -72,4 +72,4 @@ jobs:
 
             # Verify deployment
             sudo docker ps -a | grep cloudproject-app-1 || echo "Deployment failed"
-            # thjsgja
+            #jfkd
