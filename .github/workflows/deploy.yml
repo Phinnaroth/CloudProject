@@ -46,16 +46,16 @@ jobs:
             fi
 
             # Remove old image if it exists
-            sudo docker rmi CloudProject:latest || true
+            sudo docker rmi cloudproject:latest || true
             
             # Clone the latest code
             cd /home/ec2-user
-            sudo rm -rf CloudProject
-            git clone https://github.com/Phinnaroth/CloudProject.git
-            cd CloudProject
+            sudo rm -rf cloudproject
+            git clone https://github.com/Phinnaroth/cloudproject.git
+            cd cloudproject
 
             # Build new image with the same name
-            sudo docker build -t CloudProject .
+            sudo docker build -t cloudproject .
 
             # Run new container with same port mappings
             sudo docker run -d \
@@ -65,7 +65,7 @@ jobs:
               -e MYSQL_USER="${MYSQL_USER}" \
               -e MYSQL_PASSWORD="${MYSQL_PASSWORD}" \
               -e MYSQL_DATABASE="${MYSQL_DATABASE}" \
-              CloudProject:latest
+              cloudproject:latest
 
             # Deploy the docker-compose service
             sudo docker-compose up --build -d
