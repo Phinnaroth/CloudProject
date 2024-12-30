@@ -33,43 +33,43 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           envs: MYSQL_HOST,MYSQL_USER,MYSQL_PASSWORD,MYSQL_DATABASE
           script: |
-            # Check if the container 'cloudproject-app-1' is running
-            if sudo docker ps -q -f name=cloudproject-app-1; then
-              echo "Container 'cloudproject-app-1' is running. Bringing it down..."
+            # Check if the container 'CloudProject-app-1' is running
+            if sudo docker ps -q -f name=CloudProject-app-1; then
+              echo "Container 'CloudProject-app-1' is running. Bringing it down..."
               
               # Stop and remove the container using docker-compose
               sudo docker-compose down
               
               # Stop and remove the specific container if it wasn't removed by docker-compose
-              sudo docker stop cloudproject-app-1 || true
-              sudo docker rm cloudproject-app-1 || true
+              sudo docker stop CloudProject-app-1 || true
+              sudo docker rm CloudProject-app-1 || true
             fi
 
             # Remove old image if it exists
-            sudo docker rmi cloudproject:latest || true
+            sudo docker rmi CloudProject:latest || true
             
             # Clone the latest code
             cd /home/ec2-user
-            sudo rm -rf cloudproject
-            git clone https://github.com/Phinnaroth/cloudproject.git
-            cd cloudproject
+            sudo rm -rf CloudProject
+            git clone https://github.com/Phinnaroth/CloudProject.git
+            cd CloudProject
 
             # Build new image with the same name
-            sudo docker build -t cloudproject .
+            sudo docker build -t CloudProject .
 
             # Run new container with same port mappings
             sudo docker run -d \
-              --name cloudproject-app-1 \
+              --name CloudProject-app-1 \
               -p 3000:3000 \
               -e MYSQL_HOST="${MYSQL_HOST}" \
               -e MYSQL_USER="${MYSQL_USER}" \
               -e MYSQL_PASSWORD="${MYSQL_PASSWORD}" \
               -e MYSQL_DATABASE="${MYSQL_DATABASE}" \
-              cloudproject:latest
+              CloudProject:latest
 
             # Deploy the docker-compose service
             sudo docker-compose up --build -d
 
             # Verify deployment
-            sudo docker ps -a | grep cloudproject-app-1 || echo "Deployment failed"
+            sudo docker ps -a | grep CloudProject-app-1 || echo "Deployment failed"
             # thjsgja
